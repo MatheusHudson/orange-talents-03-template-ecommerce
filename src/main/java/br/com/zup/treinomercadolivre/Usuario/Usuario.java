@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import br.com.zup.treinomercadolivre.Validation.Password;
 
@@ -28,7 +29,6 @@ public class Usuario  {
 	private String login;
 
 	@Length(min=6)
-	@Password
 	private String senha;
 	
 
@@ -38,7 +38,7 @@ public class Usuario  {
 
 	public Usuario(@NotBlank @Email String login, @Length(min = 6) String senha) {
 		this.login = login;
-		this.senha = senha;
+		this.senha = new BCryptPasswordEncoder().encode(senha);
 	}
 
 

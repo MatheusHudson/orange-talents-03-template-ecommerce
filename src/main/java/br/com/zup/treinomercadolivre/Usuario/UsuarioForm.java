@@ -5,9 +5,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
-
-
-import br.com.zup.treinomercadolivre.Utils.HashPassword;
 import br.com.zup.treinomercadolivre.Validation.Password;
 
 
@@ -35,8 +32,8 @@ public class UsuarioForm {
 
 
 	public Usuario toModel() {
-	
-		return new Usuario(login, HashPassword.hashPassword(senha));
+		
+		return new Usuario(login, senha);
 	}
 
 }
