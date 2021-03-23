@@ -14,8 +14,6 @@ import javax.validation.constraints.PastOrPresent;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import br.com.zup.treinomercadolivre.Validation.Password;
-
 @Entity
 public class Usuario  {
 
@@ -25,7 +23,7 @@ public class Usuario  {
 
 	@NotBlank
 	@Email
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String login;
 
 	@Length(min=6)

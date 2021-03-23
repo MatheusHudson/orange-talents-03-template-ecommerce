@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 import br.com.zup.treinomercadolivre.Validation.Password;
+import br.com.zup.treinomercadolivre.Validation.UniqueValue;
 
 
 public class UsuarioForm {
@@ -14,6 +15,7 @@ public class UsuarioForm {
 	@NotEmpty
 	@NotBlank
 	@Email
+	@UniqueValue(domainClass = Usuario.class, fieldName = "login")
 	private String login;
 
 	@Length(min=6)
