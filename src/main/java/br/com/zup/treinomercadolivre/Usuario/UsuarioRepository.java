@@ -1,7 +1,12 @@
 package br.com.zup.treinomercadolivre.Usuario;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.Optional;
 
-public interface UsuarioRepository  extends CrudRepository<Usuario, Long>{
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+public interface UsuarioRepository  extends JpaRepository<Usuario, Long>{
+
+	Optional<Usuario> findByEmail(String username);
 	
 }

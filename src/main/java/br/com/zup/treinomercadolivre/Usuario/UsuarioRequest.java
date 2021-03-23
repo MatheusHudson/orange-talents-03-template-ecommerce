@@ -15,8 +15,8 @@ public class UsuarioRequest {
 	@NotEmpty
 	@NotBlank
 	@Email
-	@UniqueValue(domainClass = Usuario.class, fieldName = "login")
-	private String login;
+	@UniqueValue(domainClass = Usuario.class, fieldName = "email")
+	private String email;
 
 	@Length(min=6)
 	@Password
@@ -24,18 +24,22 @@ public class UsuarioRequest {
 	
 	
 	
-	public String getLogin() {
-		return login;
+
+	public String getEmail() {
+		return email;
 	}
+
+
 
 	public String getSenha() {
 		return senha;
 	}
 
 
+
 	public Usuario toModel() {
 		
-		return new Usuario(login, senha);
+		return new Usuario(email, senha);
 	}
 
 }

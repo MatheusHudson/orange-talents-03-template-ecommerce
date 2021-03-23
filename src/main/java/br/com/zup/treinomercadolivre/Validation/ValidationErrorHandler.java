@@ -32,8 +32,7 @@ public class ValidationErrorHandler {
         return buildValidationErrors(globalErrors,
 				fieldErrors);
     }
-   
-
+    
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(BindException.class)
     public ValidationErrorsOutputDto handleValidationError(BindException exception) {
