@@ -23,7 +23,7 @@ public class UsuarioController {
 
 	@PostMapping
 	@Transactional
-	public ResponseEntity<?> cadastrarUsuario(@RequestBody @Valid UsuarioForm usuarioForm) {
+	public ResponseEntity<?> cadastrarUsuario(@RequestBody @Valid UsuarioRequest usuarioForm) {
 		
 		Usuario usuario = usuarioForm.toModel();
 		UsuarioRepository.save(usuario);

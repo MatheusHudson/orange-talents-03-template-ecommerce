@@ -9,7 +9,7 @@ import br.com.zup.treinomercadolivre.Validation.Password;
 import br.com.zup.treinomercadolivre.Validation.UniqueValue;
 
 
-public class UsuarioForm {
+public class UsuarioRequest {
 	
 	
 	@NotEmpty
