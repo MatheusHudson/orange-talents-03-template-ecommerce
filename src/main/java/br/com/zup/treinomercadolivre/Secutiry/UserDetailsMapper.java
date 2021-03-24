@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @author albertoluizsouza
  *
  */
+
 public interface UserDetailsMapper {
 
 	/**
