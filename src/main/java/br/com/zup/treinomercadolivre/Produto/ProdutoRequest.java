@@ -3,10 +3,11 @@ package br.com.zup.treinomercadolivre.Produto;
 import java.math.BigDecimal;
 import java.util.List;
 
-import javax.persistence.EntityManager;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import br.com.zup.treinomercadolivre.Categoria.Categoria;
 import br.com.zup.treinomercadolivre.Validation.IdIsPresent;
@@ -24,7 +25,8 @@ public class ProdutoRequest {
 	@Min(1)
 	private Integer quantidade;
 	
-	
+	@Size(min = 3)
+	@Valid
 	private List<Caracteristicas> caracteristicas;
 
 	@NotNull
@@ -55,9 +57,5 @@ public class ProdutoRequest {
 		return new Produto(nome, valor, quantidade, caracteristicas, categoriaId);
 	}
 
-	public void  saveCaracteristicas(EntityManager em) {
-		for (Caracteristicas caract : caracteristicas) {		
-			em.persist(caract);
-		}
-	}
+
 }

@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +34,7 @@ public class Produto {
 	@Min(1)
 	private Integer quantidade;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.PERSIST)
 	private List<Caracteristicas> caracteristicas;
 	
 	@NotNull
