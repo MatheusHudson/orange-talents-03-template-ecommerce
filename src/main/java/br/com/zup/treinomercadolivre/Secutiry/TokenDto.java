@@ -1,13 +1,10 @@
 package br.com.zup.treinomercadolivre.Secutiry;
 
+
 public class TokenDto {
 	
 	private String token;
 	private String tipo;
-	
-	
-	
-	
 	
 	public TokenDto(String token, String tipo) {
 		super();

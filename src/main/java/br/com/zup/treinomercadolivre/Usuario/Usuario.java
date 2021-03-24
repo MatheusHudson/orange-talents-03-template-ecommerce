@@ -41,6 +41,7 @@ public class Usuario implements UserDetails {
 	private LocalDateTime instante = LocalDateTime.now();
 	
 	
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Perfil> perfis = new ArrayList<>();
 
 	@Deprecated
