@@ -17,7 +17,7 @@ import javax.validation.Payload;
 @Retention(RUNTIME)
 public @interface IdIsPresent {
 	
-	String message() default "Necessário informar uma categoria com id valido";
+	String message() default "Necessário informar um  id valido";
 	Class<?>[] groups() default { };
 	Class<? extends Payload>[] payload() default { };
 	Class<?> domainClass();

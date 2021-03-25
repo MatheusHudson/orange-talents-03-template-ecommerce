@@ -8,8 +8,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
+import org.springframework.util.Assert;
 import br.com.zup.treinomercadolivre.Categoria.Categoria;
+import br.com.zup.treinomercadolivre.Usuario.Usuario;
 import br.com.zup.treinomercadolivre.Validation.IdIsPresent;
 
 public class ProdutoRequest {
@@ -32,6 +33,8 @@ public class ProdutoRequest {
 	@NotNull
 	@IdIsPresent(domainClass = Categoria.class)
 	private Long categoriaId;
+	
+
 
 	public String getNome() {
 		return nome;
@@ -53,8 +56,9 @@ public class ProdutoRequest {
 		return categoriaId;
 	}
 
-	public Produto toModel() {
-		return new Produto(nome, valor, quantidade, caracteristicas, categoriaId);
+	public Produto toModel(Usuario logado) {
+		Assert.isTrue(logado.getId() != null, "Você deve estar logado para cadastrar um produto");
+		return new Produto(nome, valor, quantidade, caracteristicas, categoriaId, logado.getId());
 	}
 
 

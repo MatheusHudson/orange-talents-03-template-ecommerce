@@ -14,30 +14,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/categorias")
 public class CategoriaController {
-	
+
 	private CategoriaRepository categoriaRepository;
-	private VerificaSeCategoriaEstaCorretaValidator verificaSeCategoriaEstaCorretaValidator;
-	
-	public CategoriaController(CategoriaRepository categoriaRepository,
-			VerificaSeCategoriaEstaCorretaValidator verificaSeCategoriaEstaCorretaValidator) {
+
+	public CategoriaController(CategoriaRepository categoriaRepository
+		) {
 		this.categoriaRepository = categoriaRepository;
-		this.verificaSeCategoriaEstaCorretaValidator = verificaSeCategoriaEstaCorretaValidator;
 	}
-	
-	@InitBinder
-	public void init(WebDataBinder binder) {
-		binder.addValidators(verificaSeCategoriaEstaCorretaValidator);
-	}
-	
 
 	@PostMapping
 	@Transactional
 	public ResponseEntity<?> cadastrarCategoria(@RequestBody @Valid CategoriaRequest request) {
-		
+
 		Categoria categoria = request.toModel();
 		categoriaRepository.save(categoria);
-		return ResponseEntity.ok(1);	
-		
+		return ResponseEntity.ok(1);
+
 	}
 
 }

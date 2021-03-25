@@ -2,6 +2,7 @@ package br.com.zup.treinomercadolivre.Categoria;
 
 import javax.validation.constraints.NotEmpty;
 
+import br.com.zup.treinomercadolivre.Validation.IdIsPresent;
 import br.com.zup.treinomercadolivre.Validation.UniqueValue;
 
 public class CategoriaRequest {
@@ -11,6 +12,7 @@ public class CategoriaRequest {
 	@UniqueValue(domainClass = Categoria.class, fieldName = "nome")
 	private String nome;
 	
+	@IdIsPresent(domainClass = Categoria.class)
 	private Long categoriaMae;
 	
 	
