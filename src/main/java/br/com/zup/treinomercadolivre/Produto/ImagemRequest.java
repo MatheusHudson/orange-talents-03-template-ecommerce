@@ -1,37 +1,29 @@
 package br.com.zup.treinomercadolivre.Produto;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.springframework.web.multipart.MultipartFile;
 
-import br.com.zup.treinomercadolivre.Validation.IdIsPresent;
 
 public class ImagemRequest {
 
 	@Size(min=1)
-	private List<String> fotos; 
-	
 	@NotNull
-	@IdIsPresent(domainClass = Produto.class)
-	private Long produtoId;
+	private List<MultipartFile> fotos = new ArrayList<>();
 
-	public List<String> getFotos() {
+
+	public List<MultipartFile> getFotos() {
 		return fotos;
 	}
 
-	public Long getProdutoId() {
-		return produtoId;
+
+	public void setFotos(List<MultipartFile> fotos) {
+		this.fotos = fotos;
 	}
 
-	public List<ImagemProduto> toModel() {
-			
-		List<ImagemProduto> imagens = fotos.stream().map(x -> new ImagemProduto(x, 1L)).collect(Collectors.toList());
-		return imagens;
-	}
-	
-	
+
 	
 	
 }

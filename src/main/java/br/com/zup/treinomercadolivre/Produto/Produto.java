@@ -3,9 +3,10 @@ package br.com.zup.treinomercadolivre.Produto;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import br.com.zup.treinomercadolivre.Usuario.Usuario;
 
 @Entity
 public class Produto {
@@ -43,8 +46,8 @@ public class Produto {
 	@NotNull
 	private Long usuarioId;
 	
-	@OneToMany(cascade = CascadeType.PERSIST)
-	private List<ImagemProduto> imagens;
+	@OneToMany(cascade = CascadeType.MERGE)
+	private Set<ImagemProduto> imagens;
 	
 	private LocalDateTime instante = LocalDateTime.now();
 
@@ -68,8 +71,20 @@ public class Produto {
 		return usuarioId;
 	}
 
-	public List<ImagemProduto> getImagens() {
+	public Set<ImagemProduto> getImagens() {
 		return imagens;
+	}
+
+
+	public void associarLinks(Set<String> links) {
+		
+		Set<ImagemProduto> imagens = links.stream().map(link -> new ImagemProduto(link, this)).collect(Collectors.toSet());
+		this.imagens.addAll(imagens);
+	}
+
+	public boolean userIsValid(Usuario logado) {
+		
+		return usuarioId != logado.getId();
 	}
 
 	
