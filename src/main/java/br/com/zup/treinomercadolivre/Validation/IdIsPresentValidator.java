@@ -8,7 +8,6 @@ import javax.persistence.Query;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import org.springframework.util.Assert;
 
 public class IdIsPresentValidator implements ConstraintValidator<IdIsPresent, Object>{
 	

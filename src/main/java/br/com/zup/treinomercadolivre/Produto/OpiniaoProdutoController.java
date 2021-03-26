@@ -1,58 +1,49 @@
 package br.com.zup.treinomercadolivre.Produto;
 
 
-import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+
 import br.com.zup.treinomercadolivre.Usuario.Usuario;
 
-
 @RestController
-@RequestMapping("/produto/{id}/imagens")
-public class ImagemController {
+@RequestMapping("/produto/{id}/opiniao")
+public class OpiniaoProdutoController {
+
+	private final ValidaProduto validaProduto;
+
+	@PersistenceContext
+	EntityManager em;
 	
-	private final UploudFake uploudFake;
-	private final ValidaProduto validaProduto;;
-	
-	public ImagemController(UploudFake uploudFake, ValidaProduto validaProduto) {
-		this.uploudFake = uploudFake;
+	public OpiniaoProdutoController(ValidaProduto validaProduto) {
 		this.validaProduto = validaProduto;
 	}
 
-
-	@PersistenceContext
-	private EntityManager em;
-	
-	
-	
-	
 	@PostMapping
 	@Transactional
-	public ResponseEntity<?> cadastrarImagemProduto(@Valid ImagemRequest request, @AuthenticationPrincipal Usuario logado,
-			@PathVariable @Valid Long id) {
-	
-		
+	public void cadastrarOpiniaoProduto(@RequestBody @Valid OpinaoProdutoRequest request, @PathVariable Long id,
+			@AuthenticationPrincipal Usuario logado) {
+
 		Produto produto = validaProduto.devolveProdutoValido(id);
-		
-		if(produto.userIsValid(logado))
+		if (produto.userIsValid(logado))
 			throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Acesso negado!");
+
+		OpiniaoProduto opiniaoProduto = request.toModel(produto, logado);
 		
-		Set<String> links = uploudFake.send(request.getFotos());
-		produto.associarLinks(links);
+		produto.adicionarOpiniao(opiniaoProduto);
 		
-		em.persist(produto);
+		em.merge(produto);
 		
-		return ResponseEntity.ok(1);
 	}
 
 }

@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,8 +45,11 @@ public class Produto {
 	@NotNull
 	private Long usuarioId;
 	
-	@OneToMany(cascade = CascadeType.MERGE)
+	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "produtoId")
 	private Set<ImagemProduto> imagens;
+	
+	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "produto")
+	private Set<OpiniaoProduto> opiniao;
 	
 	private LocalDateTime instante = LocalDateTime.now();
 
@@ -75,6 +77,9 @@ public class Produto {
 		return imagens;
 	}
 
+	public Set<OpiniaoProduto> getOpiniao() {
+		return opiniao;
+	}
 
 	public void associarLinks(Set<String> links) {
 		
@@ -85,6 +90,11 @@ public class Produto {
 	public boolean userIsValid(Usuario logado) {
 		
 		return usuarioId != logado.getId();
+	}
+
+	public void adicionarOpiniao(OpiniaoProduto opiniaoProduto) {
+		
+		this.opiniao.add(opiniaoProduto);
 	}
 
 	
