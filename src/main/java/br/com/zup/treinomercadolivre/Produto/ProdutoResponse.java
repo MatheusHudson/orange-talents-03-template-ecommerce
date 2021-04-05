@@ -2,6 +2,7 @@ package br.com.zup.treinomercadolivre.Produto;
 
 import br.com.zup.treinomercadolivre.Categoria.Categoria;
 import br.com.zup.treinomercadolivre.ImagemProduto.ImagemResponse;
+import br.com.zup.treinomercadolivre.OpiniaoProduto.OpiniaoCalculo;
 import br.com.zup.treinomercadolivre.OpiniaoProduto.OpiniaoProduto;
 import br.com.zup.treinomercadolivre.OpiniaoProduto.OpiniaoProdutoResponse;
 import br.com.zup.treinomercadolivre.Pergunta.Pergunta;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+//9
 public class ProdutoResponse {
 
     @NotBlank
@@ -42,29 +44,31 @@ public class ProdutoResponse {
 
     private Long totalAvaliacoes;
 
-    //3
+    //1
     private Set<OpiniaoProdutoResponse> opiniaoProdutoResponses;
 
-    //4
+    //1
     private Set<PerguntaResponse> perguntaResponses;
 
+    //1
+    private OpiniaoCalculo opiniao;
 
 
-    public ProdutoResponse(Produto produto, Categoria categoria, Double notaMedia,
-                           long totalAvaliacoes, Set<OpiniaoProduto> opiniaoProduto, Set<Pergunta> pergunta) {
+
+    public ProdutoResponse(Produto produto, Categoria categoria, Set<OpiniaoProduto> opiniaoProduto, Set<Pergunta> pergunta) {
         this.nome = produto.getNome();
         this.valor = produto.getValor();
         this.quantidade = produto.getQuantidade();
-        //5
+        //1
         this.caracteristicasList = produto.getCaracteristicas().stream().map(CaracteristicasResponse::new).collect(Collectors.toList());
         this.categoria =  categoria.getNome();
-        //6
+        //1
         this.imagemProdutos = produto.getImagens().stream().map(ImagemResponse::new).collect(Collectors.toSet());
-        this.notaMedia = notaMedia;
-        this.totalAvaliacoes = totalAvaliacoes;
-        //7
+        this.notaMedia = opiniao.calcularMedia(opiniaoProduto);
+        this.totalAvaliacoes = opiniao.contarAvaliacoes(opiniaoProduto);
+        //1
         this.opiniaoProdutoResponses = opiniaoProduto.stream().map(OpiniaoProdutoResponse::new).collect(Collectors.toSet());
-        //8
+        //1
         this.perguntaResponses = pergunta.stream().map(PerguntaResponse::new).collect(Collectors.toSet());
 
 

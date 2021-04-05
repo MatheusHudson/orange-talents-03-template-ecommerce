@@ -47,10 +47,8 @@ public class ProdutoController {
 		Produto produto =  repository.findById(id).get();
 		Categoria categoria = repository.categoria(produto.getCategoriaId());
 		Set<OpiniaoProduto> opiniaoProduto = repository.opiniaoProduto(id);
-		Double notaMedia = opiniaoProduto.stream().mapToDouble(opiniao -> opiniao.getNota()).average().orElse(0.0);
-		Long totalAvaliacoes = opiniaoProduto.stream().mapToInt(opiniao -> opiniao.getNota()).count();
 		Set<Pergunta> pergunta = repository.perguntas(id);
-		ProdutoResponse response = new ProdutoResponse(produto, categoria, notaMedia, totalAvaliacoes, opiniaoProduto, pergunta);
+		ProdutoResponse response = new ProdutoResponse(produto, categoria,opiniaoProduto, pergunta);
 
 		return ResponseEntity.ok(response);
 	}
