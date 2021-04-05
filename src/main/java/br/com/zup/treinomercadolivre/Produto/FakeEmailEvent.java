@@ -1,5 +1,6 @@
 package br.com.zup.treinomercadolivre.Produto;
 
+import br.com.zup.treinomercadolivre.Pergunta.Pergunta;
 import org.springframework.context.ApplicationEvent;
 
 public class FakeEmailEvent  extends ApplicationEvent{

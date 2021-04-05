@@ -1,4 +1,4 @@
-package br.com.zup.treinomercadolivre.Produto;
+package br.com.zup.treinomercadolivre.Pergunta;
 
 import java.time.LocalDateTime;
 
@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import br.com.zup.treinomercadolivre.Produto.Produto;
 import br.com.zup.treinomercadolivre.Usuario.Usuario;
 
 @Entity
@@ -18,14 +19,11 @@ public class Pergunta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@NotBlank
-	private String titulo;
-	
+
 	@NotBlank
 	@Size(max=500)
-	private String descricao;
-	
+	private String titulo;
+
 	private LocalDateTime instante = LocalDateTime.now();
 	
 	@ManyToOne
@@ -34,12 +32,15 @@ public class Pergunta {
 	@ManyToOne
 	private Usuario usuario;
 
-	public Pergunta(@NotBlank String titulo, @NotBlank @Size(max = 500) String descricao, Produto produto,
+	public Pergunta(@NotBlank String titulo, Produto produto,
 			Usuario usuario) {
 		this.titulo = titulo;
-		this.descricao = descricao;
 		this.produto = produto;
 		this.usuario = usuario;
+	}
+
+	@Deprecated
+	public Pergunta() {
 	}
 
 	public Long getId() {
@@ -50,9 +51,6 @@ public class Pergunta {
 		return titulo;
 	}
 
-	public String getDescricao() {
-		return descricao;
-	}
 
 	public Produto getProduto() {
 		return produto;

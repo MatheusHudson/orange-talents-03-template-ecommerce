@@ -1,10 +1,11 @@
-	package br.com.zup.treinomercadolivre.Produto;
+	package br.com.zup.treinomercadolivre.OpiniaoProduto;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import br.com.zup.treinomercadolivre.Produto.Produto;
 import br.com.zup.treinomercadolivre.Usuario.Usuario;
 
 public class OpinaoProdutoRequest {

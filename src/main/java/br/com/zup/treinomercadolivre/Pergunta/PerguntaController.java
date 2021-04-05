@@ -1,10 +1,12 @@
-package br.com.zup.treinomercadolivre.Produto;
+package br.com.zup.treinomercadolivre.Pergunta;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import br.com.zup.treinomercadolivre.Produto.FakeEmailEvent;
+import br.com.zup.treinomercadolivre.Produto.Produto;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -35,7 +37,7 @@ public class PerguntaController {
 	
 	@PostMapping
 	@Transactional
-	public void cadastrarPergunta(@PathVariable @IdIsPresent(domainClass = Produto.class) Long id,@RequestBody @Valid  PerguntaRequest request, @AuthenticationPrincipal Usuario usuario) {
+	public void cadastrarPergunta(@PathVariable @IdIsPresent(domainClass = Produto.class) Long id, @RequestBody @Valid  PerguntaRequest request, @AuthenticationPrincipal Usuario usuario) {
 		
 		Produto produto = (Produto) em.createQuery("SELECT p FROM Produto p WHERE p.id = :pId").setParameter("pId", id).getSingleResult();
 		if(produto.userIsValid(usuario))

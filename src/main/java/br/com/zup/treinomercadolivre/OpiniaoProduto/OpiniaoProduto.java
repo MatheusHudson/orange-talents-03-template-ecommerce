@@ -1,4 +1,4 @@
-package br.com.zup.treinomercadolivre.Produto;
+package br.com.zup.treinomercadolivre.OpiniaoProduto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +11,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import br.com.zup.treinomercadolivre.Produto.Produto;
 import br.com.zup.treinomercadolivre.Usuario.Usuario;
 
 @Entity
@@ -52,8 +53,16 @@ public class OpiniaoProduto {
 		this.usuario = usuario;
 		this.produto = produto;
 	}
-	
-	
-	
 
+	public int getNota() {
+		return nota;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
 }

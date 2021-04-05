@@ -7,28 +7,24 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@Entity
-public class Caracteristicas {
-	
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
+public class CaracteristicasResponse {
+
+
 	@NotBlank
 	private String nome;
-	
+
 	@NotBlank
 	@Size(max = 1000)
 	private String descricao;
 
-	public Caracteristicas(String nome, @Size(max = 1000) String descricao) {
-		this.nome = nome;
-		this.descricao = descricao;
+	public CaracteristicasResponse(Caracteristicas caracteristicas) {
+
+		this.nome = caracteristicas.getNome();
+		this.descricao = caracteristicas.getDescricao();
 	}
 
 	@Deprecated
-	public Caracteristicas() {
+	public CaracteristicasResponse() {
 	}
 
 	public String getNome() {

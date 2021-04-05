@@ -10,7 +10,7 @@ public class FakeEmailEventListener implements ApplicationListener<FakeEmailEven
 	public void onApplicationEvent(FakeEmailEvent event) {
 		
 		System.out.println("Enviando email para o vendendor, pergunta do usuario: " + event.getPergunta().getUsuario().getEmail());
-		System.out.println("Pergunta: " + event.getPergunta().getDescricao());
+		System.out.println("Pergunta: " + event.getPergunta().getTitulo());
 	}
 	
 

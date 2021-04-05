@@ -15,6 +15,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import br.com.zup.treinomercadolivre.ImagemProduto.ImagemProduto;
 import br.com.zup.treinomercadolivre.Usuario.Usuario;
 
 @Entity
@@ -73,6 +74,7 @@ public class Produto {
 	public Set<ImagemProduto> getImagens() {
 		return imagens;
 	}
+
 	public void associarLinks(Set<String> links) {
 		
 		Set<ImagemProduto> imagens = links.stream().map(link -> new ImagemProduto(link, this)).collect(Collectors.toSet());
@@ -84,5 +86,23 @@ public class Produto {
 		return usuarioId != logado.getId();
 	}
 
-	
+	public String getNome() {
+		return nome;
+	}
+
+	public BigDecimal getValor() {
+		return valor;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public List<Caracteristicas> getCaracteristicas() {
+		return caracteristicas;
+	}
+
+	public Long getCategoriaId() {
+		return categoriaId;
+	}
 }
