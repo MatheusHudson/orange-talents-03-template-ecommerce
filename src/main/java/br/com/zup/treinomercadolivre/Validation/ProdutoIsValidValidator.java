@@ -8,11 +8,8 @@ import javax.persistence.Query;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 
-
-public class IdIsPresentValidator implements ConstraintValidator<IdIsPresent, Object>{
+public class ProdutoIsValidValidator implements ConstraintValidator<IdIsPresent, Object>{
 	
 
 	private Class<?> klass;
@@ -32,9 +29,7 @@ public class IdIsPresentValidator implements ConstraintValidator<IdIsPresent, Ob
 		Query query = manager.createQuery("select 1 from "+klass.getName()+" where id =:value");
 		query.setParameter("value", value);
 		List<?> list = query.getResultList();
-		if(list.isEmpty())
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Informar um id valido!");
-		return true;
+		return !list.isEmpty();
 	}
 
 }

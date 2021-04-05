@@ -48,9 +48,6 @@ public class Produto {
 	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "produtoId")
 	private Set<ImagemProduto> imagens;
 	
-	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "produto")
-	private Set<OpiniaoProduto> opiniao;
-	
 	private LocalDateTime instante = LocalDateTime.now();
 
 	@Deprecated
@@ -76,11 +73,6 @@ public class Produto {
 	public Set<ImagemProduto> getImagens() {
 		return imagens;
 	}
-
-	public Set<OpiniaoProduto> getOpiniao() {
-		return opiniao;
-	}
-
 	public void associarLinks(Set<String> links) {
 		
 		Set<ImagemProduto> imagens = links.stream().map(link -> new ImagemProduto(link, this)).collect(Collectors.toSet());
@@ -90,11 +82,6 @@ public class Produto {
 	public boolean userIsValid(Usuario logado) {
 		
 		return usuarioId != logado.getId();
-	}
-
-	public void adicionarOpiniao(OpiniaoProduto opiniaoProduto) {
-		
-		this.opiniao.add(opiniaoProduto);
 	}
 
 	
