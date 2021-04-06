@@ -36,7 +36,6 @@ public class Compra {
 
     @Enumerated(EnumType.STRING)
     @NotNull
-    @CreationTimestamp
     private StatusCompra status = StatusCompra.INICIADA;
 
     private BigDecimal valorProduto;
