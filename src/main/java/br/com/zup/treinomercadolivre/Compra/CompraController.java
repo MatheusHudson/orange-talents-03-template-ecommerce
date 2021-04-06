@@ -37,20 +37,19 @@ public class CompraController {
     @Transactional
     public ResponseEntity<String> realizarCompra(@RequestBody @Valid CompraRequest request,
                                                  @PathVariable @IdIsPresent(domainClass = Produto.class
-                                              ) Long id, @AuthenticationPrincipal Usuario usuario, UriComponentsBuilder uriBuilder) {
+                                                 ) Long id, @AuthenticationPrincipal Usuario usuario, UriComponentsBuilder uriBuilder) {
 
         Produto produto = em.find(Produto.class, id);
         Integer quantidade = request.getQuantidade();
-        if(produto.isValidQuantidade(quantidade)) {
+        if (produto.isValidQuantidade(quantidade)) {
             Compra compra = request.toModel(usuario, produto);
             em.persist(compra);
             applicationContext.publishEvent(new EmailEventPurchase(this, compra));
             URI uri = request.getTipoPagamento().criarUri(compra, uriBuilder);
-           return ResponseEntity.created(uri).body(uri.toString());
+            return ResponseEntity.created(uri).body(uri.toString());
+        }
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não há estoque para a quantidade selecionada");
 
         }
-
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não há estoque para a quantidade selecionada");
-
     }
-}
+
