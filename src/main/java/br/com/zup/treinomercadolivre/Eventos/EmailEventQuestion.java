@@ -1,16 +1,16 @@
-package br.com.zup.treinomercadolivre.Produto;
+package br.com.zup.treinomercadolivre.Eventos;
 
 import br.com.zup.treinomercadolivre.Pergunta.Pergunta;
 import org.springframework.context.ApplicationEvent;
 
-public class FakeEmailEvent  extends ApplicationEvent{
+public class EmailEventQuestion extends ApplicationEvent{
 
 
 	private static final long serialVersionUID = 1L;
 	
 	private final Pergunta pergunta;
 
-	public FakeEmailEvent(Object source, Pergunta pergunta) {
+	public EmailEventQuestion(Object source, Pergunta pergunta) {
 		super(source);
 		this.pergunta = pergunta;
 	}

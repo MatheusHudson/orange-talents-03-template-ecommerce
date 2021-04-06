@@ -36,7 +36,7 @@ public class Produto {
 	@NotNull
 	@Min(1)
 	private Integer quantidade;
-	
+	//1
 	@OneToMany(cascade = CascadeType.PERSIST)
 	private List<Caracteristicas> caracteristicas;
 	
@@ -45,7 +45,7 @@ public class Produto {
 	
 	@NotNull
 	private Long usuarioId;
-	
+	//1
 	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "produtoId")
 	private Set<ImagemProduto> imagens;
 	
@@ -80,7 +80,7 @@ public class Produto {
 		Set<ImagemProduto> imagens = links.stream().map(link -> new ImagemProduto(link, this)).collect(Collectors.toSet());
 		this.imagens.addAll(imagens);
 	}
-
+    //1
 	public boolean userIsValid(Usuario logado) {
 		
 		return usuarioId != logado.getId();
@@ -104,5 +104,14 @@ public class Produto {
 
 	public Long getCategoriaId() {
 		return categoriaId;
+	}
+
+
+	public boolean isValidQuantidade(Integer quantidade) {
+		if(this.quantidade > 0 && this.quantidade > quantidade) {
+			this.quantidade -= quantidade;
+			return true;
+		}
+		return false;
 	}
 }

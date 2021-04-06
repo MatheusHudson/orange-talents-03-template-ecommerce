@@ -51,7 +51,7 @@ public class ProdutoResponse {
     private Set<PerguntaResponse> perguntaResponses;
 
     //1
-    private OpiniaoCalculo opiniao;
+    private OpiniaoCalculo opiniao = new OpiniaoCalculo();
 
 
 
@@ -70,7 +70,6 @@ public class ProdutoResponse {
         this.opiniaoProdutoResponses = opiniaoProduto.stream().map(OpiniaoProdutoResponse::new).collect(Collectors.toSet());
         //1
         this.perguntaResponses = pergunta.stream().map(PerguntaResponse::new).collect(Collectors.toSet());
-
 
     }
 

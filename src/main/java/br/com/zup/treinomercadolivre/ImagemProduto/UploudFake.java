@@ -1,4 +1,4 @@
-package br.com.zup.treinomercadolivre.Produto;
+package br.com.zup.treinomercadolivre.ImagemProduto;
 
 import java.util.List;
 import java.util.Set;

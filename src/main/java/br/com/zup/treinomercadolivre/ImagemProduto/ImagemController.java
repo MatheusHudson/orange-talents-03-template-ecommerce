@@ -8,7 +8,6 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import br.com.zup.treinomercadolivre.Produto.Produto;
-import br.com.zup.treinomercadolivre.Produto.UploudFake;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
