@@ -1,6 +1,6 @@
 package br.com.zup.treinomercadolivre.Compra;
 
-import br.com.zup.treinomercadolivre.Eventos.EmailEventPurchase;
+import br.com.zup.treinomercadolivre.Eventos.EmailEvent;
 import br.com.zup.treinomercadolivre.Produto.Produto;
 import br.com.zup.treinomercadolivre.Usuario.Usuario;
 import br.com.zup.treinomercadolivre.Validation.IdIsPresent;
@@ -44,7 +44,7 @@ public class CompraController {
         if (produto.isValidQuantidade(quantidade)) {
             Compra compra = request.toModel(usuario, produto);
             em.persist(compra);
-            applicationContext.publishEvent(new EmailEventPurchase(this, compra));
+            applicationContext.publishEvent(new EmailEvent(this, compra.emailAvisoCompra()));
             URI uri = request.getTipoPagamento().criarUri(compra, uriBuilder);
             return ResponseEntity.created(uri).body(uri.toString());
         }

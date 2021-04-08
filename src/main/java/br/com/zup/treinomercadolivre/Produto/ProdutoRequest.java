@@ -33,8 +33,6 @@ public class ProdutoRequest {
 	@NotNull
 	@IdIsPresent(domainClass = Categoria.class)
 	private Long categoriaId;
-	
-
 
 	public String getNome() {
 		return nome;

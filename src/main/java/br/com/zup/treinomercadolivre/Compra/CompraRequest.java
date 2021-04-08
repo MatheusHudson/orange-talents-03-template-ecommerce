@@ -3,7 +3,6 @@ package br.com.zup.treinomercadolivre.Compra;
 import br.com.zup.treinomercadolivre.Produto.Produto;
 import br.com.zup.treinomercadolivre.Usuario.Usuario;
 
-import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -16,7 +15,7 @@ public class CompraRequest {
     @Min(1)
     private Integer quantidade;
 
-    private Gateways tipoPagamento;
+    private Gateway tipoPagamento;
 
 
     public Compra toModel(Usuario usuario, Produto produto) {
@@ -28,7 +27,7 @@ public class CompraRequest {
         return quantidade;
     }
 
-    public Gateways getTipoPagamento() {
+    public Gateway getTipoPagamento() {
         return tipoPagamento;
     }
 }

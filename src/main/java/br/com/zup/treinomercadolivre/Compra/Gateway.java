@@ -4,13 +4,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 
-public enum Gateways {
+public enum Gateway {
 
     PAYPAL("paypal.com/buyerId="),PAGSEGURO("pagseguro.com/returnId=");
 
     String descricao;
 
-    Gateways(String descricao) {
+    Gateway(String descricao) {
         this.descricao = descricao;
     }
 

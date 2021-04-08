@@ -65,6 +65,8 @@ public class Produto {
 		this.caracteristicas = caracteristicas;
 		this.categoriaId = categoriaId;
 		this.usuarioId = usuarioId;
+
+		System.out.println(caracteristicas.toString());
 	}
 
 	public Long getUsuarioId() {
@@ -106,6 +108,9 @@ public class Produto {
 		return categoriaId;
 	}
 
+	public Long getId() {
+		return id;
+	}
 
 	public boolean isValidQuantidade(Integer quantidade) {
 		if(this.quantidade > 0 && this.quantidade > quantidade) {
@@ -114,4 +119,5 @@ public class Produto {
 		}
 		return false;
 	}
+
 }

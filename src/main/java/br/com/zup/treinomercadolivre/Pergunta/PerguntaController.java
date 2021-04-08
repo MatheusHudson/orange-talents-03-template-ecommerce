@@ -5,7 +5,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
-import br.com.zup.treinomercadolivre.Eventos.EmailEventQuestion;
+import br.com.zup.treinomercadolivre.Eventos.EmailEvent;
 import br.com.zup.treinomercadolivre.Produto.Produto;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
@@ -45,7 +45,7 @@ public class PerguntaController {
 		Pergunta pergunta = request.toModel(produto, usuario);
 		em.persist(pergunta);
 
-		applicationContext.publishEvent(new EmailEventQuestion(this, pergunta));
+		applicationContext.publishEvent(new EmailEvent(this, pergunta.getEmail()));
 	
 		
 	}

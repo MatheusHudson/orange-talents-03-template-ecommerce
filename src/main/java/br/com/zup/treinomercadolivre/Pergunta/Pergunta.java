@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import br.com.zup.treinomercadolivre.Eventos.Email;
 import br.com.zup.treinomercadolivre.Produto.Produto;
 import br.com.zup.treinomercadolivre.Usuario.Usuario;
 
@@ -51,7 +52,6 @@ public class Pergunta {
 		return titulo;
 	}
 
-
 	public Produto getProduto() {
 		return produto;
 	}
@@ -59,8 +59,9 @@ public class Pergunta {
 	public Usuario getUsuario() {
 		return usuario;
 	}
-	
-	
-	
-	
+
+
+	public Email getEmail() {
+		return new Email("Vendedor da Mercadoria", usuario.getEmail(), "Pergunta sobre produto", titulo);
+	}
 }
